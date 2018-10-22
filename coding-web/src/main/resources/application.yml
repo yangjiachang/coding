@@ -1,0 +1,38 @@
+server:
+  port: 8099
+  servlet:
+    session:
+      # session超时时间，单位为秒
+      timeout: 3600
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/febs?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 15003122894
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      connection-test-query: select 1
+      max-lifetime: 1800000
+      connection-timeout: 30000
+
+  # redis配置，默认没有密码
+  redis:
+    host: 140.143.61.178
+    port: 6379
+    password:
+    jedis:
+      pool:
+        min-idle: 8
+        max-idle: 500
+        max-active: 2000
+        max-wait: 10000
+    timeout: 0
+
+  # session 存储到 redis，实现分布式 session
+  session:
+    store-type: redis
+    redis:
+      namespace: coding:spring:session
